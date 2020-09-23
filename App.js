@@ -1,7 +1,8 @@
 import 'react-native-gesture-handler';
 
 import * as React from 'react';
-import {Button, View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {Button} from 'react-native-elements';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -14,28 +15,28 @@ import ThirdScreen from './screens/ThirdScreen';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const NavigationDrawerStructure = (props)=> {
+const NavigationDrawerStructure = (props) => {
   //Structure for the navigatin Drawer
   const toggleDrawer = () => {
     //Props to open/close the drawer
     props.navigationProps.toggleDrawer();
   };
 
-    return (
-      <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity onPress={() => toggleDrawer()}>
-          {/*Donute Button Image */}
-          <Image
-            source={{
-              uri:
-                'https://raw.githubusercontent.com/AboutReact/sampleresource/master/drawerWhite.png',
-            }}
-            style={{width: 25, height: 25, marginLeft: 5}}
-          />
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  return (
+    <View style={{flexDirection: 'row'}}>
+      <Button
+      onPress={()=>toggleDrawer()}
+      type='clear'
+        icon={{
+          type:'font-awesome',
+          name: 'bars',
+          size: 20,
+          color: 'white',
+        }}
+      />
+    </View>
+  );
+};
 
 function firstScreenStack({navigation}) {
   return (
@@ -133,8 +134,8 @@ function App() {
           options={{drawerLabel: 'Second Screen Option'}}
           component={secondScreenStack}
         />
-        <Drawer.Screen 
-          name='ThirdScreen'
+        <Drawer.Screen
+          name="ThirdScreen"
           options={{drawerLabel: 'Third Screen Option'}}
           component={thirdScreenStack}
         />
